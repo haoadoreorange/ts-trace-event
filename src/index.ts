@@ -15,7 +15,7 @@ type Event = {
     cname?: string;
 };
 
-type EventProps = Pick<Event, `name` | `args` | `cname`> & { cat: string[] };
+type EventProps = Pick<Event, `name` | `args` | `cname`> & { cat?: string[] };
 
 export class TsTrace {
     private _stream = new Readable({
@@ -73,7 +73,7 @@ export class TsTrace {
         };
     }
 
-    private _parseCat(cat: EventProps[`cat`]): Event[`cat`] {
+    private _parseCat(cat: EventProps[`cat`] = [`default`]): Event[`cat`] {
         return cat.join(`,`);
     }
 

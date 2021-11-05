@@ -16,6 +16,7 @@
     ],
     "scripts": {
         "postinstall": "husky install",
+        "pump-version": "yarn version --no-commit-hooks",
         "prepack": "pinst --disable && yarn build",
         "postpack": "pinst --enable",
         "build": "rimraf dist && gulp",

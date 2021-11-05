@@ -1,10 +1,6 @@
 import { TsTrace } from "index";
 
 describe(`ts-trace test suite`, () => {
-    const expected = JSON.stringify([
-        { name: `name`, cat: `cat`, ph: `B`, pid: 1908261, ts: 1897.4071798324585, tid: 1908261 },
-        { pid: 1908261, ph: `E`, ts: 1897.5370936393738, tid: 1908261 },
-    ]);
     test(`B / returned E`, (done) => {
         const ts_trace = new TsTrace();
         let result = ``;
@@ -24,10 +20,10 @@ describe(`ts-trace test suite`, () => {
         });
     });
 
-    test(`B / E`, (done) => {
+    test(`B / E no cat`, (done) => {
         const ts_trace = new TsTrace();
         let result = ``;
-        const { pid } = ts_trace.B({ name: `name`, cat: [`cat`] });
+        const { pid } = ts_trace.B({ name: `name` });
         ts_trace.E({ pid });
         ts_trace.close();
         // @ts-expect-error // testing private field
