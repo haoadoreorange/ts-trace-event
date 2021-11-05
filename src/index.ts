@@ -17,6 +17,32 @@ type Event = {
 
 type EventProps = Pick<Event, `name` | `args` | `cname`> & { cat?: string[] };
 
+const parseCat = (cat: EventProps[`cat`] = [`default`]): Event[`cat`] => {
+    return cat.join(`,`);
+};
+
+const newBaseEvent = (apid?: Event[`pid`]): Pick<Event, `ts` | `pid` | `tid`> => {
+    const pid = apid || process.pid;
+    return {
+        ts: performance.now(),
+        pid,
+        tid: pid,
+    };
+};
+
+const newEvent = (
+    event_props: EventProps & {
+        ph: Event[`ph`];
+        pid?: Event[`pid`];
+    },
+): Event => {
+    return {
+        ...event_props,
+        ...newBaseEvent(event_props.pid),
+        cat: parseCat(event_props.cat),
+    };
+};
+
 export class TsTrace {
     private _stream = new Readable({
         read() {
@@ -51,38 +77,12 @@ export class TsTrace {
         this._stream.push(null);
     }
 
-    private _newEvent(
-        event_props: EventProps & {
-            ph: Event[`ph`];
-            pid?: Event[`pid`];
-        },
-    ): Event {
-        return {
-            ...event_props,
-            ...this._newBaseEvent(event_props.pid),
-            cat: this._parseCat(event_props.cat),
-        };
-    }
-
-    private _newBaseEvent(apid?: Event[`pid`]) {
-        const pid = apid || process.pid;
-        return {
-            ts: performance.now(),
-            pid,
-            tid: pid,
-        };
-    }
-
-    private _parseCat(cat: EventProps[`cat`] = [`default`]): Event[`cat`] {
-        return cat.join(`,`);
-    }
-
     public B(event_props: EventProps): {
         pid: Event[`pid`];
         E: (e_event_props?: Partial<EventProps>) => void;
     } {
         const pid = process.pid;
-        this._push(this._newEvent({ ...event_props, ph: `B`, pid }));
+        this._push(newEvent({ ...event_props, ph: `B`, pid }));
         return {
             pid,
             E: (e_event_props) =>
@@ -97,7 +97,7 @@ export class TsTrace {
         this._push({
             ...event_props,
             ph: `E`,
-            ...this._newBaseEvent(event_props.pid),
+            ...newBaseEvent(event_props.pid),
         });
     }
 }
