@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ts-trace test suite B / E no cat 1`] = `
+Array [
+  Object {
+    "cat": "default",
+    "name": "name",
+    "ph": "B",
+    "pid": Any<Number>,
+    "tid": Any<Number>,
+    "ts": Any<Number>,
+  },
+  Object {
+    "ph": "E",
+    "pid": Any<Number>,
+    "tid": Any<Number>,
+    "ts": Any<Number>,
+  },
+]
+`;
+
+exports[`ts-trace test suite B / returned E 1`] = `
+Array [
+  Object {
+    "cat": "cat",
+    "name": "name",
+    "ph": "B",
+    "pid": Any<Number>,
+    "tid": Any<Number>,
+    "ts": Any<Number>,
+  },
+  Object {
+    "ph": "E",
+    "pid": Any<Number>,
+    "tid": Any<Number>,
+    "ts": Any<Number>,
+  },
+]
+`;
