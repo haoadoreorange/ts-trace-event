@@ -77,7 +77,6 @@
         "ts-node-dev": "Node dev server for TS",
         "@zerollup/ts-transform-paths": "Convert import path to relative in compiled files",
         "ttypescript": "Required for ts-transform-paths",
-        "pinst": "Workaround husky 'npm postinstall' problem when 'npm publish'",
-        "syncyarnlock": "Sync yarn.lock to package.json after 'yarn upgrade'"
+        "pinst": "Workaround husky 'npm postinstall' problem when 'npm publish'"
     }
 }
