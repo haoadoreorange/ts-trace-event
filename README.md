@@ -3,7 +3,7 @@
 Implemented as a wrapper of NodeJS Readable stream
 
 ### Installation
-`yarn add https://github.com/haoadoresorange/ts-trace.git#ts-trace-v0.0.2-gitpkg`
+`yarn add ts-trace-event`
 
 ### Usage
 ```typescript

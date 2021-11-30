@@ -1,14 +1,19 @@
 {
-    "name": "ts-trace",
+    "name": "ts-trace-event",
     "version": "0.0.2",
     "description": "Google's Trace Event format tracer written in Typescript",
     "keywords": [
-        "ts-trace"
+        "ts-trace-event",
+        "google",
+        "trace",
+        "event",
+        "format"
     ],
     "main": "dist/index.js",
-    "bin": "dist/index.js",
+    "types": "dist/index.d.js",
+    "typings": "dist/index.d.js",
     "license": "MIT",
-    "repository": "https://github.com/haoadoresorange",
+    "repository": "https://github.com/haoadoresorange/ts-trace-event.git",
     "author": "haoadoresorange",
     "files": [
         "dist",
@@ -16,7 +21,7 @@
     ],
     "scripts": {
         "postinstall": "husky install",
-        "pump-version": "yarn version --no-commit-hooks",
+        "bump-version": "yarn version --no-commit-hooks",
         "prepack": "pinst --disable && yarn build",
         "postpack": "pinst --enable",
         "build": "rimraf dist && gulp",
@@ -69,6 +74,10 @@
         "eslint-config-prettier": "Turn off ESLint rules that conflict with Prettier",
         "eslint-plugin-prettier": "Run Prettier as ESLint rule (no need to run prettier command) and show errors as ESLint errors",
         "ts-jest": "Run Jest directly on TS",
-        "ts-node-dev": "Node dev server for TS"
+        "ts-node-dev": "Node dev server for TS",
+        "@zerollup/ts-transform-paths": "Convert import path to relative in compiled files",
+        "ttypescript": "Required for ts-transform-paths",
+        "pinst": "Workaround husky 'npm postinstall' problem when 'npm publish'",
+        "syncyarnlock": "Sync yarn.lock to package.json after 'yarn upgrade'"
     }
 }
