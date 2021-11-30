@@ -21,7 +21,7 @@ if [ -f ".sig" ]; then
         fi
         git config --global user.name "$name" &&
             git config --global user.email "$email" &&
-            echo "${RED}Configured git signature accordingly, please re-commit: ${email}${NC}"
+            echo "${RED}Configured git signature accordingly, please re-commit${NC}"
         exit 1
     fi
 fi
