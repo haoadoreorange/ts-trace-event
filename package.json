@@ -25,11 +25,11 @@
         "prepack": "pinst --disable && yarn build",
         "postpack": "pinst --enable",
         "build": "rimraf dist && gulp",
-        "start": "NODE_ENV=production node dist/index.js",
-        "dev": "NODE_PATH=src ts-node-dev src/index.ts",
         "lint": "eslint '**/*.{js,ts}' --quiet --fix",
         "lint-staged": "lint-staged",
-        "test": "jest"
+        "test": "jest",
+        "semver": "yarn dev --upgrade && yarn upgrade && syncyarnlock -sk && yarn",
+        "latest": "yarn dev --upgrade && yarn upgrade -L && syncyarnlock -sk && yarn"
     },
     "lint-staged": {
         "*.{js,ts}": [
@@ -63,10 +63,10 @@
         "pinst": "^2.1.6",
         "prettier": "^2.2.1",
         "rimraf": "^3.0.2",
+        "syncyarnlock": "^1.0.19",
         "ts-jest": "^27.0.2",
-        "ts-node-dev": "^1.1.6",
         "ttypescript": "^1.5.12",
-        "typescript": "^4.2.4"
+        "typescript": "4.4.4"
     },
     "dependenciesDescription": {
         "@tsconfig/node14": "Recommend tsconfig for node 14",
@@ -74,9 +74,9 @@
         "eslint-config-prettier": "Turn off ESLint rules that conflict with Prettier",
         "eslint-plugin-prettier": "Run Prettier as ESLint rule (no need to run prettier command) and show errors as ESLint errors",
         "ts-jest": "Run Jest directly on TS",
-        "ts-node-dev": "Node dev server for TS",
         "@zerollup/ts-transform-paths": "Convert import path to relative in compiled files",
         "ttypescript": "Required for ts-transform-paths",
-        "pinst": "Workaround husky 'npm postinstall' problem when 'npm publish'"
+        "pinst": "Workaround husky 'npm postinstall' problem when 'npm publish'",
+        "syncyarnlock": "Sync yarn.lock to package.json after 'yarn upgrade'"
     }
 }

@@ -1,4 +1,3 @@
-import "lib/polyfill";
 import { Readable, Writable } from "stream";
 import { performance } from "perf_hooks";
 
