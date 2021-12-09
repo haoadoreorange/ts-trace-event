@@ -1,6 +1,6 @@
 {
     "name": "ts-trace-event",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "description": "Google's Trace Event format tracer written in Typescript",
     "keywords": [
         "ts-trace-event",
