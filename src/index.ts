@@ -22,8 +22,9 @@ const parseCat = (cat: EventProps[`cat`] = [`default`]): Event[`cat`] => {
 
 const newBaseEvent = (apid?: Event[`pid`]): Pick<Event, `ts` | `pid` | `tid`> => {
     const pid = apid || process.pid;
+    const hrtime = process.hrtime(); // [seconds, nanoseconds]
     return {
-        ts: performance.now(),
+        ts: hrtime[0] * 1000000 + Math.round(hrtime[1] / 1000), // microseconds,
         pid,
         tid: pid,
     };
