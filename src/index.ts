@@ -1,5 +1,4 @@
 import { Readable, Writable } from "stream";
-import { performance } from "perf_hooks";
 
 type TraceFormat = `Array`; // TODO: support also Object format
 type Event = {
@@ -22,9 +21,8 @@ const parseCat = (cat: EventProps[`cat`] = [`default`]): Event[`cat`] => {
 
 const newBaseEvent = (apid?: Event[`pid`]): Pick<Event, `ts` | `pid` | `tid`> => {
     const pid = apid || process.pid;
-    const hrtime = process.hrtime(); // [seconds, nanoseconds]
     return {
-        ts: hrtime[0] * 1000000 + Math.round(hrtime[1] / 1000), // microseconds,
+        ts: Date.now(), // microseconds,
         pid,
         tid: pid,
     };
